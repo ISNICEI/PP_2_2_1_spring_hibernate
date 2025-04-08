@@ -5,15 +5,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "car")
 public class Car {
-
-  @OneToOne()
-  @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-  private User user;
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name= "car_id")
   private long id;
+
+  @Column(name = "model")
+  private String model;
+
+  @Column(name = "series")
+  private int series;
+
+  @OneToOne()
+  @JoinColumn(name = "user_id")
+  private User owner;
 
   public Car() {}
 
@@ -21,12 +25,6 @@ public class Car {
     this.model = model;
     this.series = series;
   }
-
-  @Column(name = "model")
-  private String model;
-
-  @Column(name = "series")
-  private int series;
 
   public long getId() {
     return id;
@@ -52,11 +50,11 @@ public class Car {
     this.series = series;
   }
 
-  public User getUser() {
-    return user;
+  public User getOwner() {
+    return owner;
   }
 
-  public void setUser(User user) {
-    this.user = user;
+  public void setOwner(User owner) {
+    this.owner = owner;
   }
 }
