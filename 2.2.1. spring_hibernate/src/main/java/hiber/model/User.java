@@ -19,7 +19,7 @@ public class User {
   @Column(name = "email")
   private String email;
 
-  @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "owner", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   private Car car;
 
   public User() {}
